@@ -29,8 +29,8 @@ public class TDDForCountDigitsMethod {
             throws IllegalArgumentException {
 //# BEGIN TODO Implementation
         int result = 1;
-        while (10 <= n) {
-            n /= 10;
+        while (r <= n) {
+            n /= r;
             ++ result;
         }
         return result;
