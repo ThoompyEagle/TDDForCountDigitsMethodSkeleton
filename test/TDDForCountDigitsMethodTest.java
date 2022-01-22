@@ -109,14 +109,30 @@ public class TDDForCountDigitsMethodTest {
      */
     @Test
     public void testCountDigitsRadix() {
-        long n = 1L;
         for (int r = 2; r <= 10; r++) {
+            long n = 1L;
             for (int k = 0; k <= 5; k++) {
                 // n == r ^ k
                 checkCountDigits(n - 1, r, Math.max(1, k));
                 checkCountDigits(n, r, k + 1);
                 n *= r;
             }
+        }
+    }
+    
+    /**
+     * Test of countDigits method, of class TDDForCountDigitsMethod.
+     * Boundary case: largest long value tested in small radixes
+     * N.B. Overflow causes linear search to loop endlessly.
+     */
+    @Test(timeout = 1000)
+    public void testCountDigitsMaxValueRadix() {
+        for (int r = 2; r < 10; r++) {
+            int exp = (int) (Math.log(Long.MAX_VALUE)/Math.log(r));
+            if (r != 2 && r != 8 ) {
+                exp += 1;
+            }
+            checkCountDigits(Long.MAX_VALUE, r, exp);
         }
     }
 //# END TODO
