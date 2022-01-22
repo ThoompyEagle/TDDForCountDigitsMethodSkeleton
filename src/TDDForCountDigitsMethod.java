@@ -15,14 +15,24 @@ public class TDDForCountDigitsMethod {
      * written in positional notation without leading zeroes.
      * Robust version.
      *
-<!--//# BEGIN TODO Contract-->
-<p><font color="red"><b>Replace this line</b></font></p>
+    <!--//# BEGIN TODO Contract-->
+    <p><font color="red"><b>
+    * @param n  the number whose digits are counted
+    * @return  the number of decimal digits in {@code n}
+    * @pre {@code 0 <= n}
+    * @post {@code \result = (\min int k; 1 <= k; n < 10 ^ k)}
+    </b></font></p>
 <!--//# END TODO-->
      */
     public static int countDigits(long n, long r)
             throws IllegalArgumentException {
 //# BEGIN TODO Implementation
-// Replace this line
+        int result = 1;
+        while (10 <= n) {
+            n /= 10;
+            ++ result;
+        }
+        return result;
 //# END TODO
     }
 

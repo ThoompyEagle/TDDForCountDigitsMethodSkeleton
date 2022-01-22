@@ -1,11 +1,12 @@
 //# BEGIN SKELETON
 import static org.junit.Assert.assertEquals;
+import org.junit.Test;
 
 /**
  * Test cases for countDigits method, of class TDDForCountDigitsMethod.
  *
 <!--//# BEGIN TODO Name, student id, and date-->
-<p><font color="red"><b>Replace this line</b></font></p>
+<p><font color="red"><b>Thomas Willems, 1022753, 22-01-2022</b></font></p>
 <!--//# END TODO -->
  */
 // -----8<----- cut line -----8<-----
@@ -28,7 +29,61 @@ public class TDDForCountDigitsMethodTest {
     }
 
 //# BEGIN TODO Test cases
-// Replace this line
+    /**
+     * Test of countDigits method, of class TDDForCountDigitsMethod.
+     * Boundary case: smallest n in radix 10
+     */
+    @Test
+    public void testCountDigits0() {
+        checkCountDigits(0, 10, 1);
+    }
+    
+    /**
+     * Test of countDigits method, of class TDDForCountDigitsMethod.
+     * Boundary case: largest n with smallest result in radix 10
+     */
+    @Test
+    public void testCountDigits9() {
+        checkCountDigits(9L, 10, 1);
+    }
+
+    // Test cases, phase 3
+    /**
+     * Test of countDigits method, of class TDDForCountDigitsMethod.
+     * Boundary case: smallest n with result 2 in radix 10
+     */
+    @Test
+    public void testCountDigits10() {
+        checkCountDigits(10L, 10, 2);
+    }
+
+    // Test cases, phase 4: More systematic approach
+    /**
+     * Test of countDigits method, of class TDDForCountDigitsMethod.
+     * Boundary cases: smallest and largest numbers with small results 
+     * in radix 10
+     */
+    @Test
+    public void testCountDigitsSmall() {
+        long n = 1L;
+        for (int r = 0; r <= 5; ++ r) {
+            // n == 10 ^ r
+            checkCountDigits(n - 1, 10, Math.max(1, r));
+            checkCountDigits(n, 10, r + 1);
+            n *= 10;
+        }
+    }
+
+    // Test cases, phase 5: Largest number
+    /**
+     * Test of countDigits method, of class TDDForCountDigitsMethod.
+     * Boundary case: largest long value tested in radix 10
+     * N.B. Overflow causes linear search to loop endlessly.
+     */
+    @Test(timeout = 1000)
+    public void testCountDigitsMaxValue() {
+        checkCountDigits(Long.MAX_VALUE, 10, 19);
+    }
 //# END TODO
 
 }
