@@ -29,6 +29,14 @@ public class TDDForCountDigitsMethod {
     public static int countDigits(long n, long r)
             throws IllegalArgumentException {
 //# BEGIN TODO Implementation
+        if (n < 0) {
+            throw new IllegalArgumentException(
+                    "Pre-condition violated: 0 > n");
+        } else if (r < 2) {
+            throw new IllegalArgumentException(
+                    "Pre-condition violated: 2 > r");
+        }
+        
         int result = 1;
         while (r <= n) {
             n /= r;
