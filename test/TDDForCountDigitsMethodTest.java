@@ -84,6 +84,23 @@ public class TDDForCountDigitsMethodTest {
     public void testCountDigitsMaxValue() {
         checkCountDigits(Long.MAX_VALUE, 10, 19);
     }
+    
+    
+    //Test cases phase 6: different radix bases
+    /**
+     * Test of countDigits method, of class TDDForCountDigitsMethodSkeleton
+     * Boundary case: smallest and largest numbers with small results in base 2
+     */
+    @Test
+    public void testCountDigitsBinary() {
+        long n = 1L;
+        for (int k = 0; k <= 5; k++) {
+            // n == 2 ^ k
+            checkCountDigits(n - 1, 2, Math.max(1, k));
+            checkCountDigits(n, 2, k + 1);
+            n *= 2;
+        }
+    }
 //# END TODO
 
 }
