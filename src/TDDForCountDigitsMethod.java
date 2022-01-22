@@ -20,6 +20,7 @@ public class TDDForCountDigitsMethod {
     * @param n  the number whose digits are counted
     * @param r  the radix base of the number
     * @return  the number of decimal digits in {@code n}
+    * @throws IllegalArgumentException  if 0 > n || 2 > r 
     * @pre {@code 0 <= n}
     * @post {@code \result = (\min int k; 1 <= k; n < r ^ k)}
     </b></font></p>
