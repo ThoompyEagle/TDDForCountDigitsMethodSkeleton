@@ -1,5 +1,8 @@
 //# BEGIN SKELETON
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 import org.junit.Test;
 
 /**
@@ -145,6 +148,45 @@ public class TDDForCountDigitsMethodTest {
         checkCountDigits(0, Long.MAX_VALUE, 1);
         checkCountDigits(Long.MAX_VALUE - 1, Long.MAX_VALUE, 1);
         checkCountDigits(Long.MAX_VALUE, Long.MAX_VALUE, 2);
+    }
+    
+    //Tests for robustness
+    
+    /**
+     * Boundary case: 0 > n
+     */
+    @Test
+    public void testNegativeDigit() {
+        Class expected = IllegalArgumentException.class;
+        
+        try {
+            checkCountDigits(-1, 10, 1);
+            fail("should have thrown" + expected);
+        } catch (Exception e) {
+            assertTrue("type: " + e.getClass().getName() + 
+                    "should have been instance of " + expected,
+                    expected.isInstance(e));
+            assertNotNull("Message should not be empty", e.getMessage());
+        }
+    }
+    
+    /**
+     * Boundary case: 2 > r
+     * NB: added timeout to prevent endless loop
+     */
+    @Test(timeout = 1000)
+    public void testTooSmallRadix() {
+        Class expected = IllegalArgumentException.class;
+        
+        try {
+            checkCountDigits(10, 1, 1);
+            fail("should have thrown" + expected);
+        } catch (Exception e) {
+            assertTrue("type: " + e.getClass().getName() + 
+                    "should have been instance of " + expected,
+                    expected.isInstance(e));
+            assertNotNull("Message should not be empty", e.getMessage());
+        }
     }
 //# END TODO
 
