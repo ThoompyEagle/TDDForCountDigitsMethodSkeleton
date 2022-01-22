@@ -126,7 +126,7 @@ public class TDDForCountDigitsMethodTest {
      * N.B. Overflow causes linear search to loop endlessly.
      */
     @Test(timeout = 1000)
-    public void testCountDigitsMaxValueRadix() {
+    public void testCountDigitsMaxValueDifferentRadix() {
         for (int r = 2; r < 10; r++) {
             int exp = (int) (Math.log(Long.MAX_VALUE)/Math.log(r));
             if (r != 2 && r != 8 ) {
@@ -134,6 +134,17 @@ public class TDDForCountDigitsMethodTest {
             }
             checkCountDigits(Long.MAX_VALUE, r, exp);
         }
+    }
+    
+    /**
+     * Test of countDigits method, of class TDDForCountDigitsMethod.
+     * Boundary case: largest long value as radix
+     */
+    @Test(timeout = 1000)
+    public void testCountDigitsMaxRadix() {
+        checkCountDigits(0, Long.MAX_VALUE, 1);
+        checkCountDigits(Long.MAX_VALUE - 1, Long.MAX_VALUE, 1);
+        checkCountDigits(Long.MAX_VALUE, Long.MAX_VALUE, 2);
     }
 //# END TODO
 
