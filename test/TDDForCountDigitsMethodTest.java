@@ -101,6 +101,24 @@ public class TDDForCountDigitsMethodTest {
             n *= 2;
         }
     }
+    
+    /**
+     * Test of countDigits method, of class TDDForCountDigitsMethodSkeleton
+     * Boundary case: smallest and largest numbers with small results in small 
+     * bases
+     */
+    @Test
+    public void testCountDigitsRadix() {
+        long n = 1L;
+        for (int r = 2; r <= 10; r++) {
+            for (int k = 0; k <= 5; k++) {
+                // n == r ^ k
+                checkCountDigits(n - 1, r, Math.max(1, k));
+                checkCountDigits(n, r, k + 1);
+                n *= r;
+            }
+        }
+    }
 //# END TODO
 
 }
